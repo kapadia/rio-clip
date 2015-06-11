@@ -4,8 +4,6 @@ import rasterio.warp
 from rasterio.coords import BoundingBox
 from affine import Affine
 
-import IPython
-
 
 __version__ = '0.0.1'
 
@@ -39,8 +37,6 @@ def crop(srcpath, tarpath, dstpath):
             height = window[0][1] - window[0][0]
             width = window[1][1] - window[1][0]
             tarmeta.update(width=width, height=height)
-            
-            # IPython.embed()
             
             with rio.open(dstpath, 'w', **tarmeta) as dst:
                 
