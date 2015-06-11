@@ -31,7 +31,7 @@ setup(name='rio-crop',
       zip_safe=False,
       install_requires=[
           'click',
-          'rasterio>=0.23'
+          'rasterio>=0.24'
       ],
       extras_require={
           'test': ['pytest'],
