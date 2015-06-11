@@ -1,6 +1,10 @@
 
-
 import rasterio as rio
+import rasterio.warp
+from rasterio.coords import BoundingBox
+from affine import Affine
+
+import IPython
 
 
 __version__ = '0.0.1'
@@ -14,16 +18,33 @@ def crop(srcpath, tarpath, dstpath):
     with rio.drivers():
         
         with rio.open(srcpath, 'r') as src:
-            source_metadata = src.meta
-            source_bounds = src.bounds
+            srcmeta = src.meta.copy()
+            srcbounds = src.bounds
         
         with rio.open(tarpath, 'r') as tar:
-            target_metadata = tar.meta
+            tarmeta = tar.meta.copy()
             
-            window = tar.window(*source_bounds)
-            count = target_metadata["count"]
+            # Update the bounds if projections do not match
+            if src.crs != tar.crs:
+                x, y = srcbounds[0::2], srcbounds[1::2]
+                bounds = rasterio.warp.transform(src.crs, tar.crs, x, y)
+                bounds = [ point for axis in bounds for point in axis ]
+                keys = ['left', 'right', 'bottom', 'top']
+                srcbounds = BoundingBox(**dict(zip(keys, bounds)))
             
-            with rio.open(dstpath, "w", **source_metadata) as dst:
+            window = tar.window(*srcbounds)
+            count = tarmeta["count"]
+            taraff = tar.affine
+            
+            height = window[0][1] - window[0][0]
+            width = window[1][1] - window[1][0]
+            tarmeta.update(width=width, height=height)
+            
+            # IPython.embed()
+            
+            with rio.open(dstpath, 'w', **tarmeta) as dst:
+                
+                dst.transform = Affine(taraff.a, taraff.b, srcbounds.top, taraff.d, taraff.e, srcbounds.left)
                 
                 for bidx in range(1, count + 1):
                     band = tar.read(bidx, window=window)

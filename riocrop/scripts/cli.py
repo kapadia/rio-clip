@@ -4,7 +4,7 @@ import click
 import rasterio
 from rasterio.rio.cli import cli
 
-from riocrop import crop
+from riocrop import crop as riocrop
 from riocrop import __version__ as riocrop_version
 
 
@@ -17,4 +17,4 @@ from riocrop import __version__ as riocrop_version
 def crop(ctx, srcpath, tarpath, dstpath):
 
     verbosity = (ctx.obj and ctx.obj.get('verbosity')) or 1
-    crop(srcpath, tarpath, dstpath)
+    riocrop(srcpath, tarpath, dstpath)
