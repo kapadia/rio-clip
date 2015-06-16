@@ -8,9 +8,9 @@ from affine import Affine
 __version__ = '0.0.1'
 
 
-def crop(srcpath, tarpath, dstpath):
+def clip(srcpath, tarpath, dstpath):
     """
-    Crop the target image to the extent of the source image.
+    Clip the target image to the extent of the source image.
     """
     
     with rio.drivers():

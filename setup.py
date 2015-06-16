@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 
 # Parse the version from the fiona module.
-with open('riocrop/__init__.py') as f:
+with open('rioclip/__init__.py') as f:
     for line in f:
         if line.find("__version__") >= 0:
             version = line.split("=")[1].strip()
@@ -16,9 +16,9 @@ with codecs_open('README.rst', encoding='utf-8') as f:
     long_description = f.read()
 
 
-setup(name='rio-crop',
+setup(name='rio-clip',
       version=version,
-      description=u"Crop a geo-aware raster to the bounds of another.",
+      description=u"Clip a geo-aware raster to the bounds of another.",
       long_description=long_description,
       classifiers=[],
       keywords='',
@@ -38,5 +38,5 @@ setup(name='rio-crop',
       },
       entry_points="""
       [rasterio.rio_commands]
-      crop=riocrop.scripts.cli:cli
-      """      )
+      crop=rioclip.scripts.cli:cli
+      """)

@@ -1,20 +1,20 @@
-rio-crop
+rio-clip
 ========
 
-A Rasterio CLI command plugin for cropping datasets.
+A Rasterio CLI command plugin for clipping datasets.
 
 Usage
 -----
 
-Given two datasets, ``rio crop`` crops the second dataset to the bounds of the first dataset.
+Given two datasets, ``rio clip`` clips the second dataset to the bounds of the first dataset.
 
 .. code-block:: console
 
-    $ rio crop source.tif target.tif cropped.tif
+    $ rio clip source.tif target.tif cropped.tif
 
 Installation
 ------------
 
 If you've already 
 `installed Rasterio <https://github.com/mapbox/rasterio#installation>`__,
-installation is just ``pip install rio-crop``.
+installation is just ``pip install rio-clip``.
