@@ -10,7 +10,7 @@ Given two datasets, ``rio clip`` clips the second dataset to the bounds of the f
 
 .. code-block:: console
 
-    $ rio clip source.tif target.tif cropped.tif
+    $ rio clip source.tif target.tif clipped.tif
 
 Installation
 ------------

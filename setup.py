@@ -24,7 +24,7 @@ setup(name='rio-clip',
       keywords='',
       author=u"Amit Kapadia",
       author_email='akapad@gmail.com',
-      url='https://github.com/kapadia/rio-crop',
+      url='https://github.com/kapadia/rio-clip',
       license='MIT',
       packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
       include_package_data=True,
@@ -38,5 +38,5 @@ setup(name='rio-clip',
       },
       entry_points="""
       [rasterio.rio_commands]
-      crop=rioclip.scripts.cli:cli
+      clip=rioclip.scripts.cli:cli
       """)
